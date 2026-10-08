@@ -36,11 +36,11 @@ const icons = {
 
 /* Ícone da marca (casa + cano + torneira + desentupidor) */
 const logoIcon = `<svg class="logo-icon" viewBox="0 0 80 64" aria-hidden="true">
-  <path d="M5 30L31 7l18 16" fill="none" stroke="#ffd21f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-  <rect x="40" y="8" width="7" height="12" rx="1" fill="#ffd21f"/>
-  <path d="M11 26v20" stroke="#ffd21f" stroke-width="6" stroke-linecap="round"/>
-  <rect x="5" y="45" width="44" height="13" rx="3" fill="#ffd21f"/>
-  <rect x="22" y="42" width="9" height="19" rx="2" fill="#ffd21f" stroke="#0b0b0b" stroke-width="2"/>
+  <path d="M5 30L31 7l18 16" fill="none" stroke="#e3262f" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  <rect x="40" y="8" width="7" height="12" rx="1" fill="#e3262f"/>
+  <path d="M11 26v20" stroke="#e3262f" stroke-width="6" stroke-linecap="round"/>
+  <rect x="5" y="45" width="44" height="13" rx="3" fill="#e3262f"/>
+  <rect x="22" y="42" width="9" height="19" rx="2" fill="#e3262f" stroke="#0b0b0b" stroke-width="2"/>
   <path d="M24 30h11a4 4 0 0 1 4 4v4" fill="none" stroke="#ffd21f" stroke-width="5" stroke-linecap="round"/>
   <rect x="27" y="24" width="4" height="7" rx="1" fill="#ffd21f"/>
   <path d="M39 41.5c0 2-1.4 2.6-1.4 4a1.4 1.4 0 0 0 2.8 0c0-1.4-1.4-2-1.4-4z" fill="#ffd21f"/>

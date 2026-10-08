@@ -272,7 +272,7 @@ function promoSection() {
     <div class="promo-text reveal">
       <span class="promo-pill">Orçamento de desentupimento</span>
       <span class="promo-big">APROVADO</span>
-      <p class="promo-sub">o cliente ganha <span class="y">uma trena.</span></p>
+      <p class="promo-sub">o cliente ganha <span class="yd">uma trena.</span></p>
       <svg class="promo-swoosh" viewBox="0 0 520 14" preserveAspectRatio="none" aria-hidden="true"><path d="M2 10C140 2 330 0 518 6" stroke="#ffd21f" stroke-width="6" fill="none" stroke-linecap="round"/></svg>
     </div>
     <div class="promo-side reveal">${I.gift}<span>Qualidade<br>no serviço<br>e um brinde<br>especial!</span></div>
