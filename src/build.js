@@ -15,7 +15,8 @@ const TODAY = new Date().toISOString().slice(0, 10);
 const hashOf = (rel) => require('crypto').createHash('md5').update(fs.readFileSync(path.join(OUT, rel))).digest('hex').slice(0, 10);
 const CSS_V = hashOf('assets/css/style.css');
 const JS_V = hashOf('assets/js/main.js');
-const desentupimentos = services.filter((s) => s.slug !== 'encanador');
+const isDesentupimento = (s) => s.slug.startsWith('desentupimento');
+const desentupimentos = services.filter(isDesentupimento);
 
 /* ---------------- helpers ---------------- */
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -266,10 +267,17 @@ function heroBadges() {
 }
 
 function serviceStrip() {
-  const items = [
-    ...services.map((s) => [svcUrl(s), s.icon, s.short.replace(/^Desentupimento /, 'Desentupimento<br>').replace('Encanador e encanamento', 'Encanador<br>e encanamento')]),
-    ['/encanador/', 'drop', 'Vazamentos<br>em geral'],
-  ];
+  const labels = {
+    'desentupimento-de-pia': 'Desentupimento<br>de pias',
+    'desentupimento-de-ralo': 'Desentupimento<br>de ralos',
+    'desentupimento-de-vaso-sanitario': 'Desentupimento<br>de vasos',
+    'desentupimento-de-esgoto': 'Desentupimento<br>de esgoto',
+    'instalacoes-hidraulicas': 'Instalações<br>hidráulicas',
+    'troca-de-torneiras-e-registros': 'Torneiras<br>e registros',
+    'limpeza-de-caixa-dagua': 'Limpeza de<br>caixa d’água',
+    'reparos-e-vazamentos': 'Reparos e<br>vazamentos',
+  };
+  const items = services.filter((s) => labels[s.slug]).map((s) => [svcUrl(s), s.icon, labels[s.slug]]);
   return `<section class="service-strip" aria-label="Principais serviços">
   <div class="container strip-grid">
     ${items.map(([href, icon, label]) => `<a class="strip-item" href="${href}">${I[icon]}<span>${label}</span></a>`).join('\n    ')}
@@ -454,8 +462,8 @@ function buildHome() {
   <div class="container hero-inner">
     <div class="hero-content">
       <span class="eyebrow">Desentupidora e encanador 24h no ABC</span>
-      <h1>Problemas com água? <span class="y">A gente resolve!</span></h1>
-      <p class="lead">Desentupimento de pia, ralo, vaso sanitário e esgoto, além de reparos e instalações hidráulicas com rapidez, segurança e profissionalismo.</p>
+      <h1>Problemas com vazamento? <span class="y">A gente resolve!</span></h1>
+      <p class="lead">Conserto de vazamentos, desentupimento de pia, ralo, vaso sanitário e esgoto, instalações hidráulicas, troca de torneiras e registros e limpeza de caixa d’água com rapidez, segurança e profissionalismo.</p>
       ${heroBadges()}
       <div class="hero-actions">
         ${btnWa('Solicite um orçamento')}
@@ -475,7 +483,7 @@ ${testimonialsSection()}
 ${faqSection(homeFaq)}`;
   write('index.html', page({
     title: 'Desentupidora 24h no ABC Paulista | DesentopeJÁ Hidráulica',
-    description: 'Desentupidora e encanador 24h no ABC Paulista: desentupimento de pia, ralo, vaso sanitário e esgoto. Sem quebrar e orçamento grátis. Ligue 11 94541-6519.',
+    description: 'Desentupidora e encanador 24h no ABC Paulista: vazamentos, desentupimento de pia, ralo, vaso e esgoto, torneiras e caixa d’água. Ligue 11 94541-6519.',
     url: '/',
     preload: '/assets/img/hero-encanador.webp',
     schema: [
@@ -489,13 +497,13 @@ ${faqSection(homeFaq)}`;
 function buildService(s) {
   const nameLow = lower1(s.name);
   const waMsg = `Olá, DesentopeJÁ! Vim pelo site e preciso de ${nameLow}.`;
-  const isDes = s.slug !== 'encanador';
+  const isDes = isDesentupimento(s);
   const crumbs = [['Início', '/'], ['Serviços', '/servicos/'], [s.name, svcUrl(s)]];
   const otherSvcs = services.filter((x) => x.slug !== s.slug);
 
   const body = `${pageHero({
     crumbs,
-    eyebrow: isDes ? 'Desentupidora 24 horas' : 'Serviços de encanamento',
+    eyebrow: isDes ? 'Desentupidora 24 horas' : 'Hidráulica 24 horas',
     h1: `${s.h1[0]} <span class="y">${s.h1[1]}</span>`,
     lead: s.lead,
     waMsg,
@@ -504,10 +512,10 @@ ${serviceStrip()}
 <section class="section section-light">
   <div class="container content-grid">
     <article class="prose">
-      <h2>${s.name} rápido e sem quebra-quebra</h2>
+      <h2>${isDes ? `${s.name} rápido e sem quebra-quebra` : `${s.name} com qualidade e garantia`}</h2>
       ${s.intro.map((p) => `<p>${p}</p>`).join('\n      ')}
 
-      <h2>Sinais de que você precisa ${isDes ? `de ${nameLow}` : 'de um encanador'}</h2>
+      <h2>${isDes ? `Sinais de que você precisa de ${nameLow}` : s.slug === 'encanador' ? 'Sinais de que você precisa de um encanador' : 'Quando chamar a DesentopeJÁ'}</h2>
       <ul class="ticks">${s.signs.map((x) => `<li>${x}</li>`).join('')}</ul>
 
       <div class="callout">
@@ -515,7 +523,7 @@ ${serviceStrip()}
         ${btnWa('Pedir orçamento pelo WhatsApp', waMsg)}
       </div>
 
-      <h2>${isDes ? 'Principais causas do entupimento' : 'O que o nosso encanador resolve'}</h2>
+      <h2>${isDes ? 'Principais causas do entupimento' : s.slug === 'encanador' ? 'O que o nosso encanador resolve' : 'O que está incluído no serviço'}</h2>
       ${s.causes.map(([t, d]) => `<h3>${t}</h3><p>${d}</p>`).join('\n      ')}
 
       <h2>Como fazemos ${isDes ? `o ${nameLow}` : 'o serviço'}</h2>
@@ -525,7 +533,7 @@ ${serviceStrip()}
       <ul class="ticks">${s.prevention.map((x) => `<li>${x}</li>`).join('')}</ul>
 
       <h2>${s.name} em todo o ABC Paulista</h2>
-      <p>A DesentopeJÁ atende ${isDes ? `${nameLow}` : 'com encanador 24h'} em todas as cidades da região: ${list(cities.map((c) => `<a href="${cityUrl(c)}">${c.name}</a>`))}. Nossa equipe chega rápido, com equipamentos profissionais e orçamento sem compromisso.</p>
+      <p>A DesentopeJÁ atende ${s.slug === 'encanador' ? 'com encanador 24h' : nameLow} em todas as cidades da região: ${list(cities.map((c) => `<a href="${cityUrl(c)}">${c.name}</a>`))}. Nossa equipe chega rápido, com equipamentos profissionais e orçamento sem compromisso.</p>
     </article>
     <aside class="sidebar">
       ${sideCta(waMsg)}
@@ -572,7 +580,7 @@ function buildCity(c) {
     c.faq,
     [`Vocês atendem 24 horas em ${c.name}?`, `Sim. A DesentopeJÁ atende ${c.name} 24 horas por dia, inclusive madrugadas, finais de semana e feriados.`],
     [`Quanto custa um desentupimento em ${c.name}?`, 'O valor depende do tipo de serviço, do local do entupimento e do equipamento necessário. Por isso fazemos um orçamento sem compromisso antes de iniciar — e não cobramos por ele.'],
-    [`Quais serviços vocês fazem em ${c.name}?`, `Desentupimento de pia, ralo, vaso sanitário e esgoto, limpeza de caixa de gordura e de inspeção, hidrojateamento e serviços de encanador (vazamentos, registros, torneiras e instalações).`],
+    [`Quais serviços vocês fazem em ${c.name}?`, `Desentupimento de pia, ralo, vaso sanitário e esgoto, hidrojateamento, conserto de vazamentos, instalações hidráulicas, troca de torneiras e registros, limpeza de caixa d’água e serviços de encanador em geral.`],
   ];
   const others = cities.filter((x) => x.slug !== c.slug);
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(c.name + ', SP')}&output=embed`;
@@ -655,7 +663,7 @@ function buildServicesHub() {
     crumbs,
     eyebrow: 'Nossos serviços',
     h1: 'Desentupimento e encanamento <span class="y">no ABC Paulista</span>',
-    lead: 'Conheça todos os serviços da DesentopeJÁ: desentupimento de pia, ralo, vaso sanitário e esgoto, e encanador 24h para vazamentos, registros, torneiras e instalações.',
+    lead: 'Conheça todos os serviços da DesentopeJÁ: desentupimento de pia, ralo, vaso sanitário e esgoto, instalações hidráulicas, troca de torneiras e registros, limpeza de caixa d’água, reparos e vazamentos e encanador 24h.',
   })}
 ${serviceStrip()}
 ${servicesSection({ showAll: false, title: ['Soluções completas', 'em hidráulica'] })}
@@ -665,7 +673,7 @@ ${citiesSection()}
 ${faqSection(homeFaq)}`;
   write('servicos/index.html', page({
     title: 'Serviços de Desentupimento e Encanador no ABC | DesentopeJÁ',
-    description: 'Todos os serviços da DesentopeJÁ no ABC Paulista: desentupimento de pia, ralo, vaso sanitário, esgoto e encanador 24h. Orçamento grátis: 11 94541-6519.',
+    description: 'Serviços da DesentopeJÁ no ABC: desentupimento, instalações hidráulicas, torneiras e registros, caixa d’água e vazamentos. Ligue 11 94541-6519.',
     url: '/servicos/',
     preload: '/assets/img/hero-encanador.webp',
     schema: [breadcrumbSchema(crumbs), faqSchema(homeFaq)],
@@ -690,7 +698,7 @@ ${citiesSection({ title: ['Escolha a', 'sua cidade'] })}
       <ul class="ticks">
         ${cities.map((c) => `<li><a href="${cityUrl(c)}">Desentupidora em ${c.name}</a> — bairros como ${list(c.neighborhoods.slice(0, 4))}.</li>`).join('\n        ')}
       </ul>
-      <p>Em todas as cidades realizamos <a href="/desentupimento-de-pia/">desentupimento de pia</a>, <a href="/desentupimento-de-ralo/">desentupimento de ralo</a>, <a href="/desentupimento-de-vaso-sanitario/">desentupimento de vaso sanitário</a>, <a href="/desentupimento-de-esgoto/">desentupimento de esgoto</a> e serviços de <a href="/encanador/">encanador 24h</a>.</p>
+      <p>Em todas as cidades realizamos ${list(services.map((s) => `<a href="${svcUrl(s)}">${lower1(s.name)}</a>`))}.</p>
     </article>
     <aside class="sidebar">${sideCta()}</aside>
   </div>

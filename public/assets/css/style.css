@@ -179,7 +179,7 @@ svg { flex-shrink: 0; }
 
 /* ---------- Faixa de serviços (ícones) ---------- */
 .service-strip { background: #0f0f0f; border-top: 1px solid #1d1d1d; border-bottom: 1px solid #1d1d1d; }
-.strip-grid { display: grid; grid-template-columns: repeat(6, 1fr); }
+.strip-grid { display: grid; grid-template-columns: repeat(8, 1fr); }
 .strip-item {
   display: flex; flex-direction: column; align-items: center; text-align: center; gap: 12px;
   padding: 30px 12px; position: relative; font-weight: 500; font-size: 1rem; line-height: 1.3; color: #fff;
@@ -498,9 +498,9 @@ a.contact-card:hover { border-color: var(--accent); }
   .hero-inner, .page-hero .hero-inner { min-height: 0; padding: 48px 20px 56px; }
   .hero-hand { display: none; }
 
-  .strip-grid { grid-template-columns: repeat(3, 1fr); }
-  .strip-item:nth-child(4)::before { display: none; }
-  .strip-item:nth-child(n+4) { border-top: 1px solid #222; }
+  .strip-grid { grid-template-columns: repeat(4, 1fr); }
+  .strip-item:nth-child(5)::before { display: none; }
+  .strip-item:nth-child(n+5) { border-top: 1px solid #222; }
 
   .section-head { grid-template-columns: 1fr; gap: 16px; }
   .section-head p { padding-left: 18px; }
@@ -593,3 +593,18 @@ a.contact-card:hover { border-color: var(--accent); }
 /* Detalhe amarelo */
 .yd { color: var(--yellow); }
 .cta-title > span { white-space: nowrap; }
+
+/* Faixa de 8 serviços e cards centralizados (9 serviços) */
+.strip-item { font-size: .95rem; padding: 28px 8px; }
+.cards-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; }
+.cards-grid > .svc-card { flex: 0 0 calc((100% - 72px) / 5); min-width: 0; }
+@media (max-width: 1180px) {
+  .cards-grid > .svc-card { flex-basis: calc((100% - 36px) / 3); }
+}
+@media (max-width: 640px) {
+  .cards-grid { gap: 12px; }
+  .cards-grid > .svc-card { flex-basis: calc((100% - 12px) / 2); }
+}
+@media (max-width: 400px) {
+  .cards-grid > .svc-card { flex-basis: 100%; }
+}
