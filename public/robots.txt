@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.desentopeja.com.br/sitemap.xml
+Sitemap: https://desetope-j.vercel.app/sitemap.xml
