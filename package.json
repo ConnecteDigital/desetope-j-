@@ -1,0 +1,10 @@
+{
+  "name": "desentopeja-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Site da DesentopeJÁ Hidráulica 24h — desentupidora no ABC Paulista",
+  "scripts": {
+    "build": "node src/build.js",
+    "start": "npx --yes serve public -l 3000"
+  }
+}
