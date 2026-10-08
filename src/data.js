@@ -17,6 +17,9 @@ const site = {
   phoneSchema: '+55-11-94541-6519',
   whatsapp: '5511945416519',
   whatsappMsg: 'Olá, DesentopeJÁ! Vim pelo site e gostaria de um orçamento.',
+  // Rastreamento (Google Ads e Google Tag Manager) — vazio = desativado
+  googleAdsId: 'AW-18502039263',
+  gtmId: 'GTM-TZNW775J',
   instagram: '', // ex.: 'https://www.instagram.com/desentopeja' (vazio = esconde o ícone)
   cnpj: '', // ex.: '00.000.000/0000-00' (vazio = não aparece no rodapé)
   region: 'ABC Paulista',

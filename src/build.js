@@ -78,12 +78,41 @@ const faqSchema = (faq) => ({
 });
 
 /* ---------------- layout ---------------- */
+/* Google Tag Manager + Google Ads (gtag.js) */
+function trackingHead() {
+  let out = '';
+  if (site.gtmId) out += `<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${site.gtmId}');</script>
+<!-- End Google Tag Manager -->
+`;
+  if (site.googleAdsId) out += `<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=${site.googleAdsId}"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', '${site.googleAdsId}');
+</script>`;
+  return out;
+}
+function trackingBody() {
+  return site.gtmId ? `<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=${site.gtmId}"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->` : '';
+}
 function head({ title, description, url, schema = [], ogImage = '/assets/img/og-desentopeja.jpg', noindex = false, preload }) {
   const ld = { '@context': 'https://schema.org', '@graph': [businessSchema(), ...schema] };
   return `<!DOCTYPE html>
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
+${trackingHead()}
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${esc(title)}</title>
 <meta name="description" content="${esc(description)}">
@@ -219,6 +248,7 @@ function footer() {
 
 const page = (meta, active, body) => `${head(meta)}
 <body>
+${trackingBody()}
 ${header(active)}
 <main id="conteudo">
 ${body}
