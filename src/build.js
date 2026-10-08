@@ -10,6 +10,11 @@ const { icons: I, logoIcon } = require('./icons');
 
 const OUT = path.join(__dirname, '..', 'public');
 const TODAY = new Date().toISOString().slice(0, 10);
+// Versão dos arquivos = hash do conteúdo: muda sempre que o arquivo muda,
+// assim o navegador nunca usa um CSS/JS antigo guardado em cache.
+const hashOf = (rel) => require('crypto').createHash('md5').update(fs.readFileSync(path.join(OUT, rel))).digest('hex').slice(0, 10);
+const CSS_V = hashOf('assets/css/style.css');
+const JS_V = hashOf('assets/js/main.js');
 const desentupimentos = services.filter((s) => s.slug !== 'encanador');
 
 /* ---------------- helpers ---------------- */
@@ -103,7 +108,7 @@ ${noindex ? '<meta name="robots" content="noindex, follow">' : '<meta name="robo
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Permanent+Marker&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 ${preload ? `<link rel="preload" as="image" href="${preload}" fetchpriority="high">` : ''}
-<link rel="stylesheet" href="/assets/css/style.css?v=${TODAY}">
+<link rel="stylesheet" href="/assets/css/style.css?v=${CSS_V}">
 <script>if('scrollRestoration' in history)history.scrollRestoration='manual';</script>
 <script type="application/ld+json">${JSON.stringify(ld)}</script>
 </head>`;
@@ -207,7 +212,7 @@ function footer() {
   <a class="mb-call" href="${site.phoneHref}">${I.phone} ${site.phoneCallDisplay}</a>
   <a class="mb-wa" href="${wa()}" target="_blank" rel="noopener">${I.whatsapp} WhatsApp</a>
 </div>
-<script src="/assets/js/main.js?v=${TODAY}" defer></script>
+<script src="/assets/js/main.js?v=${JS_V}" defer></script>
 </body>
 </html>`;
 }
