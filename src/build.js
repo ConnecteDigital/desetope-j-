@@ -29,9 +29,9 @@ function write(rel, html) {
 }
 
 /* ---------------- botões ---------------- */
-const btnWa = (label = 'Solicite um orçamento', msg, cls = 'btn btn-yellow') =>
+const btnWa = (label = 'Solicite um orçamento', msg, cls = 'btn btn-wa') =>
   `<a class="${cls}" href="${wa(msg)}" target="_blank" rel="noopener">${I.whatsapp}<span>${label}</span>${I.arrow}</a>`;
-const btnCall = (cls = 'btn btn-outline') =>
+const btnCall = (cls = 'btn btn-call') =>
   `<a class="${cls}" href="${site.phoneHref}">${I.phone}<span>Ligar: ${site.phoneCallDisplay}</span></a>`;
 
 /* ---------------- schema.org ---------------- */
@@ -141,7 +141,7 @@ function header(active) {
       </ul>
     </nav>
     <div class="header-cta">
-      <a class="btn btn-yellow" href="${wa()}" target="_blank" rel="noopener" aria-label="Chame no WhatsApp">${I.whatsapp}<span>Chame no WhatsApp</span></a>
+      <a class="btn btn-wa" href="${wa()}" target="_blank" rel="noopener" aria-label="Chame no WhatsApp">${I.whatsapp}<span>Chame no WhatsApp</span></a>
       <button class="menu-toggle" aria-label="Abrir menu" aria-expanded="false">${I.menu}</button>
     </div>
   </div>
@@ -200,6 +200,7 @@ function footer() {
     </div>
   </div>
 </footer>
+<a class="call-float" href="${site.phoneHref}" aria-label="Ligar para ${site.phoneCallDisplay}">${I.phone}</a>
 <a class="wa-float" href="${wa()}" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">${I.whatsapp}</a>
 <button class="to-top" aria-label="Voltar ao topo">${I.up}</button>
 <div class="mobile-bar">
@@ -314,7 +315,7 @@ function citiesSection({ service, exclude, title, text } = {}) {
     </div>
     <div class="city-grid">
       ${list.map((c) => `<a class="city-card reveal" href="${cityUrl(c)}">${I.pin}<span><b>${service ? `${service.name} em ${c.name}` : `Desentupidora em ${c.name}`}</b><small>Atendimento 24h</small></span></a>`).join('\n      ')}
-      ${list.length % 4 !== 0 ? `<a class="city-card all reveal" href="${wa()}" target="_blank" rel="noopener">${I.whatsapp}<span><b>Não achou sua cidade?</b><small>Chame no WhatsApp</small></span></a>` : ''}
+      ${list.length % 4 !== 0 ? `<a class="city-card all wa reveal" href="${wa()}" target="_blank" rel="noopener">${I.whatsapp}<span><b>Não achou sua cidade?</b><small>Chame no WhatsApp</small></span></a>` : ''}
     </div>
   </div>
 </section>`;
@@ -403,7 +404,7 @@ function sideCta(waMsg, title = 'Orçamento grátis agora') {
           <div>${I.check} Serviço com garantia</div>
         </div>
         ${btnWa('Chamar no WhatsApp', waMsg)}
-        ${btnCall('btn btn-outline')}
+        ${btnCall()}
       </div>`;
 }
 
@@ -423,6 +424,7 @@ function buildHome() {
       ${heroBadges()}
       <div class="hero-actions">
         ${btnWa('Solicite um orçamento')}
+        ${btnCall()}
       </div>
     </div>
   </div>
@@ -744,7 +746,7 @@ function buildContact() {
       </div>
       <label>Bairro<input name="bairro" placeholder="Seu bairro"></label>
       <label>Descreva o problema<textarea name="mensagem" rows="4" placeholder="Ex.: a pia da cozinha está entupida desde ontem"></textarea></label>
-      <button class="btn btn-yellow" type="submit">${I.whatsapp} Enviar pelo WhatsApp</button>
+      <button class="btn btn-wa" type="submit">${I.whatsapp} Enviar pelo WhatsApp</button>
       <small>Não cobramos orçamento.</small>
     </form>
   </div>
