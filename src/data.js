@@ -7,7 +7,7 @@ const site = {
   name: 'DesentopeJÁ',
   fullName: 'DesentopeJÁ Hidráulica 24h',
   // >>> TROQUE pelo domínio definitivo (sem barra no final) <<<
-  url: 'https://desetope-j.vercel.app',
+  url: 'https://www.desentopejasp.com.br',
   // Telefone exibido no site
   phoneDisplay: '11 94541-6519',
   // Telefone exibido nos botões de ligação
