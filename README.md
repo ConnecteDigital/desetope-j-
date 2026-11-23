@@ -1,6 +1,6 @@
 # DesentopeJÁ Hidráulica 24h — site
 
-Site estático (HTML + CSS + JS puro) da desentupidora DesentopeJÁ, focado em SEO local no **ABC Paulista**.
+Site estático (HTML + CSS + JS puro) da desentupidora DesentopeJÁ, focado em SEO local em **São Paulo (capital), Grande SP e ABC Paulista**.
 
 ## Estrutura
 
@@ -23,13 +23,7 @@ public/         ← SITE PRONTO (é esta pasta que vai para a hospedagem)
 | Desentupimento de esgoto | `/desentupimento-de-esgoto/` |
 | Encanador 24h | `/encanador/` |
 | Áreas atendidas (hub) | `/areas-atendidas/` |
-| Santo André | `/desentupidora-santo-andre/` |
-| São Bernardo do Campo | `/desentupidora-sao-bernardo-do-campo/` |
-| São Caetano do Sul | `/desentupidora-sao-caetano-do-sul/` |
-| Diadema | `/desentupidora-diadema/` |
-| Mauá | `/desentupidora-maua/` |
-| Ribeirão Pires | `/desentupidora-ribeirao-pires/` |
-| Rio Grande da Serra | `/desentupidora-rio-grande-da-serra/` |
+| 32 páginas de regiões | `/desentupidora-<região>/` — Centro e Zonas Sul, Oeste, Norte e Leste de SP, 7 cidades do ABC e 20 cidades da Grande SP (lista completa em `src/data.js`) |
 | Sobre / Contato / 404 | `/sobre/`, `/contato/`, `/404.html` |
 
 Além de `sitemap.xml` e `robots.txt`.
