@@ -738,3 +738,5 @@ a.contact-card:hover { border-color: var(--accent); }
 .theme-light .section .btn-outline, .theme-light .section-head .btn-outline { color: #111; }
 .theme-light .section .btn-outline:hover { color: #fff; }
 .theme-light .cta-band, .theme-light .site-footer { color: var(--text); }
+.theme-light .region-block.region-wa { background: var(--green); border-color: var(--green); color: #fff; }
+.theme-light .region-wa small { color: #eafff1; }

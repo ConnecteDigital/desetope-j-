@@ -3,5 +3,122 @@
   "framework": null,
   "buildCommand": "npm run build",
   "outputDirectory": "public",
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/desentupidora-osasco/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-barueri/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-carapicuiba/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-jandira/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-itapevi/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-santana-de-parnaiba/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-cotia/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-taboao-da-serra/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-embu-das-artes/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-itapecerica-da-serra/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-guarulhos/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-aruja/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-itaquaquecetuba/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-ferraz-de-vasconcelos/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-poa/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-suzano/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-mogi-das-cruzes/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-caieiras/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-franco-da-rocha/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-mairipora/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-diadema/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-ribeirao-pires/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    },
+    {
+      "source": "/desentupidora-rio-grande-da-serra/",
+      "destination": "/areas-atendidas/",
+      "permanent": true
+    }
+  ]
 }

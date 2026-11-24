@@ -17,7 +17,7 @@ const CSS_V = hashOf('assets/css/style.css');
 const JS_V = hashOf('assets/js/main.js');
 const isDesentupimento = (s) => s.slug.startsWith('desentupimento');
 
-// Preenche campos padrão das cidades/regiões ("em Osasco", "na Zona Sul de São Paulo")
+// Preenche campos padrão das cidades/regiões ("em Mauá", "na Zona Sul de São Paulo")
 cities.forEach((c) => {
   c.short = c.short || c.name;
   c.em = c.em || `em ${c.name}`;
@@ -69,7 +69,7 @@ function businessSchema() {
     image: abs('/assets/img/og-desentopeja.jpg'),
     logo: abs('/assets/img/logo-desentopeja.png'),
     priceRange: '$$',
-    description: 'Desentupidora e encanador 24 horas em São Paulo, Grande SP e ABC: desentupimento de pia, ralo, vaso sanitário, esgoto, vazamentos e serviços de encanamento.',
+    description: 'Desentupidora 24 horas e encanador em São Paulo e ABC: desentupimento de pia, ralo, vaso sanitário, esgoto, vazamentos e serviços de encanamento.',
     address: { '@type': 'PostalAddress', addressRegion: 'SP', addressCountry: 'BR' },
     areaServed: [{ '@type': 'City', name: 'São Paulo' }, ...cities.filter((c) => c.region !== 'sp').map((c) => ({ '@type': 'City', name: c.name }))],
     openingHoursSpecification: [{
@@ -164,7 +164,7 @@ ${preload ? `<link rel="preload" as="image" href="${preload}" fetchpriority="hig
 const logoImg = (size = 64, lazy = false) =>
   `<img class="logo-badge" src="/assets/img/logo-desentopeja.webp" alt="Logo ${esc(site.fullName)}" width="${size}" height="${size}"${lazy ? ' loading="lazy"' : ''}>`;
 const logo = (tag = 'a', href = '/', lazy = false) =>
-  `<${tag} class="logo"${tag === 'a' ? ` href="${href}" aria-label="${esc(site.fullName)} — página inicial"` : ''}>${logoImg(64, lazy)}<span class="logo-text"><span class="logo-name">Desentope<span class="y">JÁ</span></span><span class="logo-sub">HIDRÁULICA <b>24h</b></span></span></${tag}>`;
+  `<${tag} class="logo"${tag === 'a' ? ` href="${href}" aria-label="${esc(site.fullName)} — página inicial"` : ''}>${logoImg(64, lazy)}<span class="logo-text"><span class="logo-name">Desentope<span class="y">JÁ</span></span><span class="logo-sub">HIDRÁULICA</span></span></${tag}>`;
 
 function header(active) {
   const a = (key) => (active === key ? ' class="active" aria-current="page"' : '');
@@ -208,7 +208,7 @@ function ctaBand() {
     <div class="cta-title">${I.whatsapp}<span>Precisou de hidráulica?<br>Chama a <span class="y">DesentopeJÁ</span>!</span></div>
     <div class="cta-info">
       <div class="cta-info-row">
-        <span>${I.clock} Atendimento 24h</span>
+        <span>${I.clock} Desentupimento 24h</span>
         <a href="${wa()}" target="_blank" rel="noopener">${I.whatsapp} ${site.phoneDisplay}</a>
       </div>
       <small>Solicite um orçamento sem compromisso.</small>
@@ -230,7 +230,7 @@ function footer() {
         ${site.instagram ? `<a href="${site.instagram}" target="_blank" rel="noopener" aria-label="Instagram">${I.instagram}</a>` : ''}
         <a href="${wa()}" target="_blank" rel="noopener" aria-label="WhatsApp">${I.whatsapp}</a>
       </div>
-      <div class="footer-area">${I.pin}<span>Atendemos São Paulo,<b>Grande SP e ABC</b></span></div>
+      <div class="footer-area">${I.pin}<span>Atendemos São Paulo<b>e ABC Paulista</b></span></div>
     </div>
     <div class="footer-links">
       <div>
@@ -242,11 +242,12 @@ function footer() {
         ${byRegion.map((r) => `<p class="f-region">${r.name}</p><p class="f-cities">${r.cities.map((c) => `<a href="${cityUrl(c)}">${c.short}</a>`).join(' · ')}</p>`).join('\n        ')}
       </div>
       <div>
-        <h4>Atendimento 24h</h4>
+        <h4>Atendimento</h4>
         <p>WhatsApp: <a href="${wa()}" target="_blank" rel="noopener">${site.phoneDisplay}</a></p>
         <p>Ligação: <a href="${site.phoneHref}">${site.phoneCallDisplay}</a></p>
-        <p>Todos os dias, inclusive feriados.</p>
-        <p>São Paulo (Centro e Zonas Sul, Oeste, Norte e Leste), ABC Paulista e Grande SP.</p>
+        <p>Desentupimento 24h, todos os dias, inclusive feriados.</p>
+        <p>Serviços hidráulicos com agendamento.</p>
+        <p>São Paulo (Centro e Zonas Sul, Oeste, Norte e Leste) e ABC Paulista.</p>
         <p><a href="/areas-atendidas/">Ver todas as áreas atendidas</a></p>
       </div>
     </div>
@@ -280,7 +281,7 @@ ${footer()}`;
 /* ---------------- seções reutilizáveis ---------------- */
 function heroBadges() {
   return `<div class="hero-badges">
-          <div class="hero-badge">${I.clock}<span>Atendimento<b>24 horas</b></span></div>
+          <div class="hero-badge">${I.clock}<span>Desentupimento<b>24 horas</b></span></div>
           <div class="hero-badge">${I.house}<span>Residencial<br>e Comercial</span></div>
           <div class="hero-badge">${I.shield}<span>Não cobramos<br>orçamentos</span></div>
         </div>`;
@@ -312,7 +313,7 @@ function aboutSection(h = 'h2') {
     <div class="about-text reveal">
       <span class="kicker">Sobre nós</span>
       <${h} id="sobre-titulo">Trabalho sério, <span class="y">com quem entende de hidráulica.</span></${h}>
-      <p>Somos a <b>DesentopeJÁ</b>, uma empresa especializada em serviços hidráulicos, atuando com agilidade e equipe qualificada para resolver o seu problema, seja ele grande ou pequeno — em São Paulo, na Grande SP e no ABC Paulista, 24 horas por dia.</p>
+      <p>Somos a <b>DesentopeJÁ</b>, uma empresa especializada em serviços hidráulicos, atuando com agilidade e equipe qualificada para resolver o seu problema, seja ele grande ou pequeno — em São Paulo e no ABC Paulista, 24 horas por dia.</p>
     </div>
     <ul class="about-checks reveal">
       ${['Equipe experiente<br>e treinada', 'Equipamentos modernos', 'Atendimento rápido<br>e eficiente', 'Qualidade e garantia<br>nos serviços']
@@ -367,12 +368,12 @@ function servicesSection({ exclude, title = ['Soluções completas', 'em hidráu
 }
 
 function citiesSection({ service, exclude, title, text } = {}) {
-  const t = title || ['Atendemos São Paulo,', 'Grande SP e ABC'];
+  const t = title || ['Atendemos São Paulo', 'e ABC Paulista'];
   return `<section class="section section-black" id="cidades" aria-labelledby="cidades-titulo">
   <div class="container">
     <div class="section-head">
       <div><span class="kicker">Áreas atendidas</span><h2 class="section-title" id="cidades-titulo">${t[0]} <span class="y">${t[1]}</span></h2></div>
-      <p>${text || 'Equipes posicionadas para chegar rápido em toda a capital, no ABC e nas cidades da Grande SP, 24 horas por dia, 7 dias por semana.'}</p>
+      <p>${text || 'Equipes posicionadas para chegar rápido em toda a capital e no ABC, com desentupimento 24 horas por dia, 7 dias por semana.'}</p>
       <a class="btn btn-outline btn-sm" href="/areas-atendidas/">Ver áreas atendidas ${I.arrow}</a>
     </div>
     <div class="region-grid">
@@ -388,7 +389,7 @@ function citiesSection({ service, exclude, title, text } = {}) {
 
 function stepsSection(title = ['Por que escolher a', 'DesentopeJÁ?']) {
   const steps = [
-    ['clock', 'Atendimento 24 horas', 'Dia, noite, fim de semana e feriado. Emergência hidráulica não tem hora marcada.'],
+    ['clock', 'Desentupimento 24 horas', 'Entupiu de madrugada, no fim de semana ou feriado? O desentupimento é atendido a qualquer hora.'],
     ['noBreak', 'Sem quebra-quebra', 'Máquinas rotativas e hidrojateamento que desentopem sem quebrar piso ou parede.'],
     ['shield', 'Orçamento grátis', 'Você conhece o valor antes de começar. Não cobramos pelo orçamento.'],
     ['check', 'Serviço com garantia', 'Equipe treinada, material de qualidade e garantia no serviço executado.'],
@@ -462,9 +463,9 @@ function pageHero({ crumbs, eyebrow, h1, lead, waMsg, hand = true }) {
 function sideCta(waMsg, title = 'Orçamento grátis agora') {
   return `<div class="side-card">
         <h3>${title}</h3>
-        <p>Fale direto com um técnico. Atendimento 24h em São Paulo, Grande SP e ABC.</p>
+        <p>Fale direto com um técnico. Desentupimento 24h e serviços hidráulicos em São Paulo e ABC.</p>
         <div class="side-meta">
-          <div>${I.clock} Atendimento 24 horas</div>
+          <div>${I.clock} Desentupimento 24 horas</div>
           <div>${I.shield} Não cobramos orçamento</div>
           <div>${I.check} Serviço com garantia</div>
         </div>
@@ -483,7 +484,7 @@ function buildHome() {
   <div class="hero-media"><img src="/assets/img/hero-encanador.webp" alt="Encanador da DesentopeJÁ consertando o sifão de uma pia" width="991" height="686" fetchpriority="high"></div>
   <div class="container hero-inner">
     <div class="hero-content">
-      <span class="eyebrow">Desentupidora e encanador 24h em SP e Grande SP</span>
+      <span class="eyebrow">Desentupidora 24h e encanador em SP e ABC</span>
       <h1>Problemas com vazamento? <span class="y">A gente resolve!</span></h1>
       <p class="lead">Conserto de vazamentos, desentupimento de pia, ralo, vaso sanitário e esgoto, instalações hidráulicas, troca de torneiras e registros e limpeza de caixa d’água com rapidez, segurança e profissionalismo.</p>
       ${heroBadges()}
@@ -504,8 +505,8 @@ ${stepsSection()}
 ${testimonialsSection()}
 ${faqSection(homeFaq)}`;
   write('index.html', page({
-    title: 'Desentupidora 24h em São Paulo e Grande SP | DesentopeJÁ',
-    description: 'Desentupidora e encanador 24h em SP, Grande SP e ABC: vazamentos, desentupimento de pia, ralo, vaso e esgoto e caixa d’água. Ligue 011 94541-6519.',
+    title: 'Desentupidora 24h em São Paulo e ABC | DesentopeJÁ',
+    description: 'Desentupidora 24h e encanador em São Paulo e ABC: vazamentos, desentupimento de pia, ralo, vaso e esgoto e caixa d’água. Ligue 011 94541-6519.',
     url: '/',
     preload: '/assets/img/hero-encanador.webp',
     schema: [
@@ -525,7 +526,7 @@ function buildService(s) {
 
   const body = `${pageHero({
     crumbs,
-    eyebrow: isDes ? 'Desentupidora 24 horas' : 'Hidráulica 24 horas',
+    eyebrow: isDes ? 'Desentupidora 24 horas' : 'Serviços hidráulicos',
     h1: `${s.h1[0]} <span class="y">${s.h1[1]}</span>`,
     lead: s.lead,
     waMsg,
@@ -541,7 +542,7 @@ ${serviceStrip()}
       <ul class="ticks">${s.signs.map((x) => `<li>${x}</li>`).join('')}</ul>
 
       <div class="callout">
-        <p><b>Está com esse problema agora?</b> Chame a DesentopeJÁ: atendemos 24 horas em São Paulo, na Grande SP e no ABC e não cobramos orçamento.</p>
+        <p><b>Está com esse problema agora?</b> Chame a DesentopeJÁ: ${isDes ? 'atendemos 24 horas em São Paulo e no ABC' : 'atendemos em São Paulo e no ABC, com agendamento rápido,'} e não cobramos orçamento.</p>
         ${btnWa('Pedir orçamento pelo WhatsApp', waMsg)}
       </div>
 
@@ -554,8 +555,8 @@ ${serviceStrip()}
       <h2>Dicas para evitar novos problemas</h2>
       <ul class="ticks">${s.prevention.map((x) => `<li>${x}</li>`).join('')}</ul>
 
-      <h2>${s.name} em São Paulo, Grande SP e ABC</h2>
-      <p>A DesentopeJÁ atende ${s.slug === 'encanador' ? 'com encanador 24h' : nameLow} em toda a cidade de São Paulo — ${list(spZones.map((c) => `<a href="${cityUrl(c)}">${c.short}</a>`))} —, no ABC Paulista e nas cidades da Grande SP, como ${list(['desentupidora-guarulhos', 'desentupidora-osasco', 'desentupidora-santo-andre', 'desentupidora-sao-bernardo-do-campo', 'desentupidora-barueri'].map((sl) => cities.find((c) => c.slug === sl)).filter(Boolean).map((c) => `<a href="${cityUrl(c)}">${c.name}</a>`))}. Nossa equipe chega rápido, com equipamentos profissionais e orçamento sem compromisso.</p>
+      <h2>${s.name} em São Paulo e ABC</h2>
+      <p>A DesentopeJÁ atende ${s.slug === 'encanador' ? 'com encanador' : nameLow} em toda a cidade de São Paulo — ${list(spZones.map((c) => `<a href="${cityUrl(c)}">${c.short}</a>`))} — e no ABC Paulista: ${list(cities.filter((c) => c.region === 'abc').map((c) => `<a href="${cityUrl(c)}">${c.name}</a>`))}. Nossa equipe chega rápido, com equipamentos profissionais e orçamento sem compromisso.</p>
     </article>
     <aside class="sidebar">
       ${sideCta(waMsg)}
@@ -567,7 +568,7 @@ ${serviceStrip()}
   </div>
 </section>
 ${isDes ? promoSection() : ''}
-${citiesSection({ service: s, title: [`${s.name} em`, 'SP, Grande SP e ABC'], text: `Escolha sua região e veja como funciona o atendimento de ${nameLow} perto de você.` })}
+${citiesSection({ service: s, title: [`${s.name} em`, 'SP e ABC'], text: `Escolha sua região e veja como funciona o atendimento de ${nameLow} perto de você.` })}
 ${stepsSection()}
 ${faqSection(s.faq, `Dúvidas sobre ${nameLow}`)}
 ${servicesSection({ exclude: s.slug, title: ['Conheça outros', 'serviços'], kicker: 'Mais serviços' })}`;
@@ -580,7 +581,7 @@ ${servicesSection({ exclude: s.slug, title: ['Conheça outros', 'serviços'], ki
     schema: [
       {
         '@type': 'Service',
-        name: `${s.name} em São Paulo e Grande SP`,
+        name: `${s.name} em São Paulo e ABC`,
         serviceType: s.name,
         url: abs(svcUrl(s)),
         description: s.description,
@@ -600,7 +601,7 @@ function buildCity(c) {
   const crumbs = [['Início', '/'], ['Áreas atendidas', '/areas-atendidas/'], [`Desentupidora ${c.em}`, cityUrl(c)]];
   const faq = [
     c.faq,
-    [`Vocês atendem 24 horas ${c.em}?`, `Sim. A DesentopeJÁ atende ${c.em} 24 horas por dia, inclusive madrugadas, finais de semana e feriados.`],
+    [`Vocês atendem 24 horas ${c.em}?`, `Sim, para desentupimento: atendemos ${c.em} 24 horas por dia, inclusive madrugadas, finais de semana e feriados. Os demais serviços hidráulicos são feitos com agendamento.`],
     [`Quanto custa um desentupimento ${c.em}?`, 'O valor depende do tipo de serviço, do local do entupimento e do equipamento necessário. Por isso fazemos um orçamento sem compromisso antes de iniciar — e não cobramos por ele.'],
     [`Quais serviços vocês fazem ${c.em}?`, `Desentupimento de pia, ralo, vaso sanitário e esgoto, hidrojateamento, conserto de vazamentos, instalações hidráulicas, troca de torneiras e registros, limpeza de caixa d’água e serviços de encanador em geral.`],
   ];
@@ -683,7 +684,7 @@ function buildServicesHub() {
   const body = `${pageHero({
     crumbs,
     eyebrow: 'Nossos serviços',
-    h1: 'Desentupimento e encanamento <span class="y">em SP e Grande SP</span>',
+    h1: 'Desentupimento e encanamento <span class="y">em SP e ABC</span>',
     lead: 'Conheça todos os serviços da DesentopeJÁ: desentupimento de pia, ralo, vaso sanitário e esgoto, instalações hidráulicas, troca de torneiras e registros, limpeza de caixa d’água, reparos e vazamentos e encanador 24h.',
   })}
 ${serviceStrip()}
@@ -694,7 +695,7 @@ ${citiesSection()}
 ${faqSection(homeFaq)}`;
   write('servicos/index.html', page({
     title: 'Serviços de Desentupimento e Encanador em SP | DesentopeJÁ',
-    description: 'Serviços da DesentopeJÁ em SP e Grande SP: desentupimento, instalações hidráulicas, torneiras e registros, caixa d’água e vazamentos. Ligue 11 94541-6519.',
+    description: 'Serviços da DesentopeJÁ em SP e ABC: desentupimento, instalações hidráulicas, torneiras e registros, caixa d’água e vazamentos. Ligue 11 94541-6519.',
     url: '/servicos/',
     preload: '/assets/img/hero-encanador.webp',
     schema: [breadcrumbSchema(crumbs), faqSchema(homeFaq)],
@@ -707,15 +708,15 @@ function buildCitiesHub() {
   const body = `${pageHero({
     crumbs,
     eyebrow: 'Áreas atendidas',
-    h1: 'Desentupidora em <span class="y">São Paulo, Grande SP e ABC</span>',
-    lead: 'Atendemos 24 horas toda a capital — Centro e Zonas Sul, Oeste, Norte e Leste —, o ABC Paulista e as principais cidades da Grande São Paulo.',
+    h1: 'Desentupidora em <span class="y">São Paulo e ABC</span>',
+    lead: 'Atendemos toda a capital — Centro e Zonas Sul, Oeste, Norte e Leste — e o ABC Paulista: Santo André, São Bernardo do Campo, São Caetano do Sul e Mauá.',
   })}
 ${citiesSection({ title: ['Escolha a', 'sua região'] })}
 <section class="section section-light">
   <div class="container content-grid">
     <article class="prose">
       <h2>Uma desentupidora perto de você em São Paulo e região</h2>
-      <p>A DesentopeJÁ atende a capital paulista, o ABC e as cidades da Grande São Paulo com rapidez. Por conhecer bem cada região — dos prédios antigos do Centro às casas com quintal da Grande SP — sabemos quais problemas são mais comuns em cada lugar e chegamos preparados.</p>
+      <p>A DesentopeJÁ atende a capital paulista e o ABC com rapidez. Por conhecer bem cada região — dos prédios antigos do Centro às casas e sobrados do ABC — sabemos quais problemas são mais comuns em cada lugar e chegamos preparados.</p>
       ${byRegion.map((r) => `<h3>${r.name}</h3>
       <ul class="ticks">
         ${r.cities.map((c) => `<li><a href="${cityUrl(c)}">Desentupidora ${c.em}</a> — bairros como ${list(c.neighborhoods.slice(0, 4))}.</li>`).join('\n        ')}
@@ -727,8 +728,8 @@ ${citiesSection({ title: ['Escolha a', 'sua região'] })}
 </section>
 ${stepsSection()}`;
   write('areas-atendidas/index.html', page({
-    title: 'Áreas Atendidas: Desentupidora em SP, Grande SP e ABC | DesentopeJÁ',
-    description: 'Desentupidora 24h em toda São Paulo (Centro e Zonas Sul, Oeste, Norte e Leste), ABC e Grande SP: Guarulhos, Osasco, Barueri e mais. Ligue 011 94541-6519.',
+    title: 'Áreas Atendidas: Desentupidora em SP e ABC | DesentopeJÁ',
+    description: 'Desentupidora 24h em toda São Paulo (Centro e Zonas Sul, Oeste, Norte e Leste) e no ABC: Santo André, São Bernardo, São Caetano e Mauá.',
     url: '/areas-atendidas/',
     preload: '/assets/img/hero-encanador.webp',
     schema: [breadcrumbSchema(crumbs)],
@@ -742,25 +743,25 @@ function buildAbout() {
     crumbs,
     eyebrow: 'Sobre a DesentopeJÁ',
     h1: 'Trabalho sério, <span class="y">com quem entende de hidráulica</span>',
-    lead: 'Desentupidora e encanador 24 horas em São Paulo, Grande SP e ABC, com equipe treinada, equipamentos modernos e compromisso com o seu problema.',
+    lead: 'Desentupidora 24 horas e encanador em São Paulo e ABC, com equipe treinada, equipamentos modernos e compromisso com o seu problema.',
   })}
 ${aboutSection('h2')}
 <section class="section section-light">
   <div class="container content-grid">
     <article class="prose">
       <h2>Quem somos</h2>
-      <p>A <b>DesentopeJÁ Hidráulica 24h</b> é especializada em desentupimento e serviços de encanamento para residências, comércios, condomínios e indústrias em São Paulo, na Grande SP e no ABC Paulista.</p>
+      <p>A <b>DesentopeJÁ Hidráulica</b> é especializada em desentupimento e serviços de encanamento para residências, comércios, condomínios e indústrias em São Paulo e no ABC Paulista.</p>
       <p>Nosso foco é simples: chegar rápido, explicar o problema com clareza, passar um orçamento justo e resolver de forma limpa e definitiva. Trabalhamos com máquinas rotativas, hidrojateamento e ferramentas profissionais que evitam o quebra-quebra.</p>
       <h2>Nossos compromissos</h2>
       <ul class="ticks">
-        <li>Atendimento 24 horas, todos os dias, inclusive feriados</li>
+        <li>Desentupimento 24 horas, todos os dias, inclusive feriados</li>
         <li>Orçamento sem compromisso antes de qualquer serviço</li>
         <li>Equipe uniformizada, educada e treinada</li>
         <li>Limpeza do local ao final do atendimento</li>
         <li>Garantia no serviço executado</li>
       </ul>
       <h2>O que fazemos</h2>
-      <p>${list(services.map((s) => `<a href="${svcUrl(s)}">${lower1(s.name)}</a>`))} — em toda a cidade de São Paulo, no ABC Paulista e na Grande SP. Veja todas as <a href="/areas-atendidas/">áreas atendidas</a>.</p>
+      <p>${list(services.map((s) => `<a href="${svcUrl(s)}">${lower1(s.name)}</a>`))} — em toda a cidade de São Paulo e no ABC Paulista. Veja todas as <a href="/areas-atendidas/">áreas atendidas</a>.</p>
     </article>
     <aside class="sidebar">${sideCta()}</aside>
   </div>
@@ -769,8 +770,8 @@ ${promoSection()}
 ${stepsSection()}
 ${testimonialsSection()}`;
   write('sobre/index.html', page({
-    title: 'Sobre a DesentopeJÁ | Desentupidora 24h em SP e Grande SP',
-    description: 'Conheça a DesentopeJÁ Hidráulica 24h: desentupidora e encanador em SP, Grande SP e ABC com equipe treinada, equipamentos modernos e garantia.',
+    title: 'Sobre a DesentopeJÁ | Desentupidora 24h em SP e ABC',
+    description: 'Conheça a DesentopeJÁ Hidráulica: desentupidora 24h e encanador em SP e ABC com equipe treinada, equipamentos modernos e garantia.',
     url: '/sobre/',
     preload: '/assets/img/hero-encanador.webp',
     schema: [breadcrumbSchema(crumbs)],
@@ -784,7 +785,7 @@ function buildContact() {
     crumbs,
     eyebrow: 'Contato',
     h1: 'Fale com a <span class="y">DesentopeJÁ</span>',
-    lead: 'Atendimento 24 horas pelo WhatsApp e telefone. Orçamento sem compromisso para São Paulo, Grande SP e ABC.',
+    lead: 'Fale pelo WhatsApp ou telefone. Desentupimento 24 horas e orçamento sem compromisso em São Paulo e ABC.',
   })}
 <section class="section section-black">
   <div class="container contact-grid">
@@ -794,8 +795,8 @@ function buildContact() {
       <div class="contact-cards">
         <a class="contact-card" href="${wa()}" target="_blank" rel="noopener">${I.whatsapp}<span><small>WhatsApp</small><b>${site.phoneDisplay}</b></span></a>
         <a class="contact-card" href="${site.phoneHref}">${I.phone}<span><small>Ligação</small><b>${site.phoneCallDisplay}</b></span></a>
-        <div class="contact-card">${I.clock}<span><small>Horário</small><b>24 horas, todos os dias</b></span></div>
-        <div class="contact-card">${I.pin}<span><small>Área de atendimento</small><b>São Paulo, Grande SP e ABC</b></span></div>
+        <div class="contact-card">${I.clock}<span><small>Horário</small><b>Desentupimento 24h, todos os dias</b></span></div>
+        <div class="contact-card">${I.pin}<span><small>Área de atendimento</small><b>São Paulo e ABC</b></span></div>
       </div>
     </div>
     <form class="form" id="form-orcamento" data-wa="${site.whatsapp}">
@@ -819,7 +820,7 @@ function buildContact() {
 ${faqSection(homeFaq)}`;
   write('contato/index.html', page({
     title: 'Contato | DesentopeJÁ Desentupidora 24h em SP',
-    description: 'Fale com a DesentopeJÁ 24h pelo WhatsApp 11 94541-6519. Orçamento sem compromisso para desentupimento e encanador em São Paulo, Grande SP e ABC.',
+    description: 'Fale com a DesentopeJÁ pelo WhatsApp 11 94541-6519. Orçamento sem compromisso para desentupimento e encanador em São Paulo e ABC.',
     url: '/contato/',
     preload: '/assets/img/hero-encanador.webp',
     schema: [breadcrumbSchema(crumbs)],
@@ -856,7 +857,15 @@ ${urls.map(([u, p]) => `  <url><loc>${abs(u)}</loc><lastmod>${TODAY}</lastmod><p
   write('robots.txt', `User-agent: *\nAllow: /\n\nSitemap: ${abs('/sitemap.xml')}\n`);
 }
 
+/* ---------- limpa páginas de regiões que saíram do site ---------- */
+function cleanRemovedCities() {
+  const keep = new Set(cities.map((c) => c.slug));
+  fs.readdirSync(OUT).filter((d) => d.startsWith('desentupidora-') && !keep.has(d))
+    .forEach((d) => fs.rmSync(path.join(OUT, d), { recursive: true, force: true }));
+}
+
 /* ---------- executar ---------- */
+cleanRemovedCities();
 buildHome();
 buildServicesHub();
 services.forEach(buildService);
