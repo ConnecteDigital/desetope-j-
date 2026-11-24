@@ -489,8 +489,9 @@ a.contact-card:hover { border-color: var(--accent); }
   .logo-name { font-size: 1.45rem; }
   .logo-sub { font-size: .62rem; }
 
-  .hero-media { width: 100%; opacity: .6; }
-  .hero-media::before { background: linear-gradient(90deg, rgba(11,11,11,.85) 0%, rgba(11,11,11,.45) 100%); }
+  .hero-media { width: 100%; opacity: 1; }
+  .hero-media::before { background: linear-gradient(180deg, rgba(11,11,11,.55) 0%, rgba(11,11,11,.4) 60%, rgba(11,11,11,.6) 100%); }
+  .hero-content { text-shadow: 0 2px 10px rgba(0,0,0,.75); }
   .hero-inner, .page-hero .hero-inner { min-height: 0; padding: 48px 20px 56px; }
   .hero-hand { display: none; }
 
