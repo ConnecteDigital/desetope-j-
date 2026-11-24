@@ -23,6 +23,8 @@ const site = {
   instagram: '', // ex.: 'https://www.instagram.com/desentopeja' (vazio = esconde o ícone)
   cnpj: '', // ex.: '00.000.000/0000-00' (vazio = não aparece no rodapé)
   region: 'São Paulo, Grande SP e ABC',
+  // Visual do site: 'light' (fundo branco, textos pretos) ou 'dark' (fundo preto)
+  theme: 'light',
 };
 
 /* ---------------- SERVIÇOS ---------------- */

@@ -268,7 +268,7 @@ function footer() {
 }
 
 const page = (meta, active, body) => `${head(meta)}
-<body>
+<body class="theme-${site.theme || 'dark'}">
 ${trackingBody()}
 ${header(active)}
 <main id="conteudo">
